@@ -1,0 +1,8 @@
+---
+- name: figue out why apache can not install on vmc1
+  hosts: vmc1
+  tasks:
+  - name: just ping to see if executed
+    ping: 
+  - name: ensure apache installed
+    yum: name=httpd state=installed
