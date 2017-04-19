@@ -1,0 +1,10 @@
+---
+- name: uninstall apache on vmc
+  hosts: vmc
+  become: yes
+  become_user: root
+  tasks:
+  - name: ensure httpd is stopped
+    service: name=httpd state=stopped
+  - name: ensure apache is absent
+    yum: name=httpd state=absent

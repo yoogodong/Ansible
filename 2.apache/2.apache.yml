@@ -1,0 +1,20 @@
+---
+- name: install apache on vmc
+  hosts: vmc
+  become: yes
+  become_user: root
+  vars: 
+   http_port: 80
+  tasks:
+  - name: ensure apache is present
+    yum: name=httpd state=present
+  - meta: flush_handlers
+  - name: write apache config file
+    template: src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf
+    notify: 
+    - restart apache
+  - name: ensure apache is runing
+    service: name=httpd state=started
+  handlers:
+  - name: restart apache
+    service: name=httpd state=restarted enabled=yes

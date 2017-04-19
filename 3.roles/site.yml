@@ -1,0 +1,8 @@
+---
+- name: web server
+  hosts: vmc
+  become: yes
+  become_user: root
+  roles:
+  - apache
+

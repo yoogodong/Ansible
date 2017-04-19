@@ -1,0 +1,14 @@
+---
+- name: a play
+  hosts: vmu
+  tasks:
+  - name: try ping
+    ping: 
+  - name: execute touch 
+    command: touch my.txt
+
+- name: another play
+  hosts: vmc
+  tasks:
+  - ping:
+  - command: date
